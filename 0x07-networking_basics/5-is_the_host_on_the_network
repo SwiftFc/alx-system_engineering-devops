@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+# Accepts a string as an argument
+# if no argument passed - displays 5-is_the_host_on_the_network
+# Ping the IP 5 times
 if [ "$#" -eq 0 ]; then
     echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
 else
