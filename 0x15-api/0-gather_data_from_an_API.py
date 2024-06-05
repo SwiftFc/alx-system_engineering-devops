@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 """
-returns information about a given employee using a REST API.
+Returns information about
+a given employee using a REST API.
 
 Requirements:
 - Use urllib or requests module
