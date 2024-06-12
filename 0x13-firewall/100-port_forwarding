@@ -8,14 +8,12 @@
 #   ufw-before-forward
 #
 
+# Adding this line to forward all requests from port 8080 to port 80
 *nat
 :PREROUTING ACCEPT [0:0]
-# The following line specifies a rule in the PREROUTING chain.
-# It checks for incoming TCP traffic on port 8080.
-# If a match is found, it redirects the traffic to port 80.
 -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
-# The COMMIT statement finalizes and applies the NAT rules.
 COMMIT
+# end of my additions
 
 # Don't delete these required lines, otherwise there will be errors
 *filter
