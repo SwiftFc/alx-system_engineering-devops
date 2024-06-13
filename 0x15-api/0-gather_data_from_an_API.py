@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 """
-Script retrieves and displays TODO list progress
-for a given employee using a REST API.
+Script retrieves and displays TODO list progress for a given employee
+using a REST API.
 """
 
 import requests
@@ -10,6 +10,16 @@ import sys
 
 
 def get_employee_todo_progress(employee_id):
+    """
+    Fetches information about an employee and their tasks from
+    JSONPlaceholder API.
+
+    Args:
+    - employee_id (str): ID of the employee to retrieve information for.
+
+    Returns:
+    - None
+    """
     # Fetches and displays TODO list progress for a given employee.
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = "{}/users/{}".format(base_url, employee_id)
