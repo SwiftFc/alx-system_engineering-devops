@@ -1,13 +1,8 @@
 #!/usr/bin/python3
 
 """
-Returns information about
-a given employee using a REST API.
-
-Requirements:
-- Use urllib or requests module
-- Accept an integer as a parameter (employee ID)
-- Display progress information in the specified format
+Script retrieves and displays TODO list progress for a given employee
+using a REST API.
 """
 
 import requests
@@ -15,14 +10,7 @@ import sys
 
 
 def get_employee_todo_progress(employee_id):
-    """ Fetches and displays TODO list progress for a given employee.
-
-    Args:
-    - employee_id (int): ID of the employee to retrieve TODO list for.
-
-    Returns:
-    - None
-    """
+    # Fetches and displays TODO list progress for a given employee.
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = "{}/users/{}".format(base_url, employee_id)
     todos_url = "{}/todos?userId={}".format(base_url, employee_id)
