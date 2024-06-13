@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 Script retrieves and displays TODO list progress for a given employee
 using a REST API.
