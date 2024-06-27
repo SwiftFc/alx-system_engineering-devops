@@ -1,14 +1,39 @@
 #!/usr/bin/env bash
-# The page must return an HTTP 404 error code
-# The page must contain the string Ceci n'est pas une page
-# Using what you did with 3-redirection, write 4-not_found_page_404 so that it configures a brand new Ubuntu machine to the requirements asked in this task
-sudo apt -y update
+# Configures a new ubuntu machine by installing
+# Nginx where it should be listening on port 80
+# Serve a page that would return a Hello World string
+#
 
-sudo apt -y install nginx
+echo -e "Updating and installing Nginx.\n"
+sudo apt-get update -y -qq && \
+	 sudo apt-get install nginx -y
 
-#ufw allow 'Nginx HTTP'
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+echo -e "\nSetting up some minor stuff.\n"
 
-sed -i 's/server_name _;/server_name _;\n\trewrite \/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;\n\terror_page 404 \/404.html;\n\tlocation \/404.html{\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}/' /etc/nginx/sites-enabled/default
+# starting nginx service
+sudo service nginx start
 
+# allowing nginx on firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+# Backup default index
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# Creating new index
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Setting up /redirect_me to a youtube video
+sudo sed -i '24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Set up a 404 page
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
+sudo sed -i '25i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
+
+# Restarting nginx
 sudo service nginx restart
+
+echo -e "\nCompleted.\n"
