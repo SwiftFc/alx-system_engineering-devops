@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# A Bash script that displays a list of current running process
-
-ps aux --forest

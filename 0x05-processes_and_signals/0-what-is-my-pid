@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# A Bash script to display its own PID
-
-pid=$$
-
-echo $pid
